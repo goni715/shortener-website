@@ -1,5 +1,4 @@
-import Navbar from "@/components/layout/Navbar";
-import PrivateRoute from "@/components/PrivateRoute/PrivateRoute";
+import PublicRoute from "@/components/PublicRoute/PublicRoute";
 import React from "react";
 
 type TProps = {
@@ -8,10 +7,9 @@ type TProps = {
 const layout = ({ children }: TProps) => {
   return (
     <>
-      <PrivateRoute>
-        <Navbar/>
+      <PublicRoute>
         {children}
-      </PrivateRoute>
+      </PublicRoute>
     </>
   );
 };
