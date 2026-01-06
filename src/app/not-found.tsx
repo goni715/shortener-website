@@ -13,7 +13,7 @@ const NotFoundPage = () => {
             alt="404 Illustration"
             width={600}
             height={500}
-            className="max-w-md w-full h-[600px] mx-auto"
+            className="max-w-md w-full h-150 mx-auto"
           />
         </div>
         <Link
