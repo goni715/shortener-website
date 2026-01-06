@@ -36,11 +36,7 @@ const LoginForm = () => {
         <CustomInput label="Email" name="email" type="text" control={control} placeholder="Enter email address"/>
         <CustomInput label="Password" name="password" type="password" control={control} placeholder="Enter your password"/>
 
-        <div className="flex justify-between items-center">
-          <label className="flex items-center text-sm">
-            <input type="checkbox" className="mr-2 cursor-pointer" /> Remember
-            me
-          </label>
+        <div className="flex justify-end items-center">
           <Link
             href="/forgot-password"
             className="text-sm text-[#3AB0FF] hover:underline"

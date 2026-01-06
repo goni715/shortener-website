@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import NextTopLoader from "nextjs-toploader";
 import GlobalProvider from "@/providers/GlobalProvider";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

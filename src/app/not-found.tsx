@@ -6,10 +6,10 @@ import { FaArrowLeft } from "react-icons/fa";
 const NotFoundPage = () => {
   return (
     <>
-      <div className="min-h-screen flex flex-col items-center bg-white px-6 py-12 text-center">
+      <div className="min-h-full flex flex-col items-center bg-white px-6 py-12 text-center">
         <div className="mt-">
           <Image
-            src="/images/notfound.svg"
+            src="notfound.svg"
             alt="404 Illustration"
             width={600}
             height={500}

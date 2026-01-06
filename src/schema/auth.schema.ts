@@ -45,10 +45,7 @@ export const registerSchema = z
       .min(1, "Confirm Password is required")
       .min(6, "Confirm Password must be at least 6 characters long")
       .max(100, "Confirm Password is too long")
-      .trim(),
-    terms: z.literal(true, {
-      errorMap: () => ({ message: "You must check this box" }),
-    }),
+      .trim()
   })
   .superRefine((data, ctx) => {
     if (data.password !== data.confirmPassword) {
