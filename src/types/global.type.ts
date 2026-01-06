@@ -14,3 +14,10 @@ export type IAuthUser = {
   profileImg: string;
   role: "user" | "admin";
 };
+
+export interface IMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}

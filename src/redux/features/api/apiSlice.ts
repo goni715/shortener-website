@@ -4,6 +4,7 @@ import { BASE_URL } from "@/constant/global.constant";
 import { ErrorToast } from "@/helpers/ValidationHelper";
 import { getToken } from "@/helpers/SessionHelper";
 import { ApiError } from "@/types/global.type";
+import TagTypes from "@/constant/tagType.constant";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -27,6 +28,6 @@ export const apiSlice = createApi({
     }
     return result;
   },
-  tagTypes: [], //TagS WhiteLists
+  tagTypes: Object.values(TagTypes), //TagS WhiteLists
   endpoints: (_builder) => ({}),
 });
