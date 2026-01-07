@@ -1,3 +1,3 @@
 
-export const BASE_URL = "http://localhost:9090/api/v1";
-export const DOMAIN_URL = "http://localhost:3000"
+export const BASE_URL = "https://shortener-backend-goni.vercel.app/api/v1";
+export const DOMAIN_URL = "https://shortener-goni.vercel.app"
