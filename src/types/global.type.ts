@@ -21,3 +21,8 @@ export interface IMeta {
   total: number;
   totalPages: number;
 }
+
+export interface IParam {
+  name: string;
+  value: string;
+}

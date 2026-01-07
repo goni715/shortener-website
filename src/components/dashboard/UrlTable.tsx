@@ -37,16 +37,15 @@ const UrlTable : React.FC<TProps> = ({
     }
   }, [currentPage, meta, setCurrentPage]);
 
-  const dataSource: TDataSource[] = urls?.map((contact, index) => ({
+  const dataSource: TDataSource[] = urls?.map((url, index) => ({
     key: index,
     serial: Number(index + 1) + (meta.page - 1) * pageSize,
-    _id: contact?._id,
-    email: contact?.email,
-    message: contact?.message,
-    phone: contact?.phone,
-    replyText: contact?.replyText,
-    createdAt: contact?.createdAt,
-    replyAt: contact?.replyAt,
+    _id: url?._id,
+    originalUrl: url?.originalUrl,
+    shortUrl: url?.shortCode,
+    shortCode: url?.shortCode,
+    visits: url?.visits,
+    createdAt: url?.createdAt,
   }));
 
  
@@ -58,27 +57,16 @@ const UrlTable : React.FC<TProps> = ({
       width: 60,
     },
     {
-      title: "Email",
-      dataIndex: "email",
+      title: "Original Url",
+      dataIndex: "originUrl",
       key: "email",
       width: 250,
     },
      {
-      title: "Contact Number",
+      title: "url Number",
       dataIndex: "phone",
       key: "phone",
       width: 200,
-    },
-    {
-      title: "Message",
-      dataIndex: "message",
-      key: "message",
-      width: 250,
-      render: (text: string) => (
-        <>
-          <p className="truncate text-md">{text}</p>
-        </>
-      ),
     },
     {
       title: "Date",

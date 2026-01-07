@@ -1,23 +1,20 @@
 import React, { Suspense, useState } from "react";
-import ServerErrorCard from "../card/ServerErrorCard";
-import { useGetContactListQuery } from "../../redux/features/contact/contactApi";
-import ContactListHeader from "./ContactListHeader";
-import useDebounce from "../../hooks/useDebounce";
 import TableLoading from "../loader/TableLoading";
+import UrlTable from "./UrlTable";
+import UrlListHeader from "./UrlListHeader";
+import { useGetUrlsQuery } from "@/redux/features/url/urlApi";
 
 
 const UrlList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const { searchTerm } = useDebounce({searchQuery, setCurrentPage}) //search debounce handled
-  const { data, isLoading, isFetching, isError } = useGetContactListQuery([
+  const { data, isLoading, isFetching, isError } = useGetUrlsQuery([
     { name: "page", value: currentPage },
     { name: "limit", value: pageSize },
-    { name: "searchTerm", value: searchTerm },
   ]);
 
-  const contacts = data?.data || [];
+  const urls = data?.data || [];
   const meta = data?.meta || {};
 
 
@@ -32,8 +29,8 @@ const UrlList = () => {
       <>   
         <Suspense fallback={<TableLoading/>}>
           <div className="flex-1 overflow-hidden">
-            <ContactTable
-              contacts={contacts}
+            <UrlTable
+              urls={urls}
               meta={meta}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
@@ -48,12 +45,12 @@ const UrlList = () => {
   }
 
   if (!isLoading && isError) {
-    content = <ServerErrorCard />;
+    content = <h1>Something Went Wrong</h1>;
   }
 
   return (
     <>
-      <ContactListHeader meta={meta} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <UrlListHeader meta={meta} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {content}
     </>
   )
