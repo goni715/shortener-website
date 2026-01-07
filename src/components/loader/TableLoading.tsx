@@ -4,7 +4,7 @@ const TableLoading = () => {
     
     return (
       <>
-        <div className="bg-white w-7xl px-3 pb-6">
+        <div className="bg-white w-full lg:w-7xl px-3 pb-6">
           <div className=" space-y-4 animate-pulse">
             {loadingArray?.map((item) => (
                 <div

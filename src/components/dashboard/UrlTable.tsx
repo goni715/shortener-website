@@ -5,6 +5,7 @@ import { IUrl } from "@/types/url.type";
 import getColorClassForDate from "@/utils/getColorClassForDate";
 import DeleteUrlModal from "../modal/DeleteUrlModal";
 import ViewUrlModal from "../modal/ViewUrlModal";
+import { ExternalLink } from "lucide-react";
 
 interface TProps {
   urls: IUrl[];
@@ -73,7 +74,21 @@ const UrlTable: React.FC<TProps> = ({
       title: "Short Url",
       dataIndex: "shortUrl",
       key: "shortUrl",
-      width: 250,
+      width: 300,
+      render: (val: string) => (
+        <>
+          <div className="flex gap-2 items-center">
+            <p>{val}</p>
+            <a
+              href={val}
+              target="_blank"
+              className={`p-1 rounded-full cursor-pointer transition-colors bg-gray-100 hover:bg-gray-200 text-gray-700`}
+            >
+              <ExternalLink size={16} />
+            </a>
+          </div>
+        </>
+      ),
     },
     {
       title: "Short Code",

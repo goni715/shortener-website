@@ -8,7 +8,7 @@ import { useGetUrlsQuery } from "@/redux/features/url/urlApi";
 const UrlList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const { data, isLoading, isFetching, isError } = useGetUrlsQuery([
+  const { data, isLoading, isFetching, isError, refetch } = useGetUrlsQuery([
     { name: "page", value: currentPage },
     { name: "limit", value: pageSize },
   ]);
@@ -46,7 +46,12 @@ const UrlList = () => {
 
   return (
     <>
-      <UrlListHeader meta={meta} />
+      <UrlListHeader
+        meta={meta}
+        onRefresh={() => refetch()}
+        isFetching={isFetching}
+        isLoading={isLoading}
+      />
       {content}
     </>
   );

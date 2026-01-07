@@ -1,10 +1,14 @@
+import { RefreshCw } from "lucide-react";
 import type { IMeta } from "../../types/global.type"
 
 interface TProps {
-  meta: IMeta
+  meta: IMeta;
+  onRefresh?: () => void;
+  isFetching?:boolean;
+  isLoading?: boolean;
 }
 
-const UrlListHeader = ({meta }: TProps) => {
+const UrlListHeader = ({ meta, onRefresh, isFetching, isLoading }: TProps) => {
 
   return (
     <div className="p-3 sm:p-4">
@@ -18,6 +22,17 @@ const UrlListHeader = ({meta }: TProps) => {
               </span>
             </div>
         </div>
+         {onRefresh && (
+            <button
+              onClick={onRefresh}
+              disabled={isFetching}
+              className={`w-full cursor-pointer sm:w-auto px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2`}
+              title="Refresh orders"
+            >
+              <RefreshCw className={`h-4 w-4 sm:h-6 sm:w-6 ${!isLoading && isFetching && 'animate-spin'}`} />
+              <span className="sm:hidden">Refresh</span>
+            </button>
+          )}
       </div>
     </div>
   )
