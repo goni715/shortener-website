@@ -4,6 +4,7 @@ import type { IMeta } from "../../types/global.type";
 import { IUrl } from "@/types/url.type";
 import getColorClassForDate from "@/utils/getColorClassForDate";
 import DeleteUrlModal from "../modal/DeleteUrlModal";
+import ViewUrlModal from "../modal/ViewUrlModal";
 
 interface TProps {
   urls: IUrl[];
@@ -59,7 +60,14 @@ const UrlTable: React.FC<TProps> = ({
       dataIndex: "originalUrl",
       key: "originalUrl",
       width: 200,
-      render: (val: string) => <p className="truncate">{val}</p>,
+      render: (val: string) => (
+        <>
+          <div className="flex gap-2 items-center">
+            <p className="w-50 truncate">{val}</p>
+            <ViewUrlModal url={val} />
+          </div>
+        </>
+      ),
     },
     {
       title: "Short Url",
@@ -72,14 +80,14 @@ const UrlTable: React.FC<TProps> = ({
       dataIndex: "shortCode",
       key: "shortCode",
       width: 150,
-      align: "center" as const
+      align: "center" as const,
     },
     {
       title: "Total Visits",
       dataIndex: "visits",
       key: "visits",
       width: 150,
-      align: "center" as const
+      align: "center" as const,
     },
     {
       title: "Date",
