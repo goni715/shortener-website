@@ -12,6 +12,12 @@ export const urlApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: (result) => {
+        if (result?.success) {
+          return [TagTypes.urls];
+        }
+        return [];
+      },
     }),
     getUrls: builder.query({
       query: (args) => {
@@ -61,4 +67,8 @@ export const urlApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useCreateShortUrlMutation, useGetUrlsQuery, useDeleteUrlMutation } = urlApi;
+export const {
+  useCreateShortUrlMutation,
+  useGetUrlsQuery,
+  useDeleteUrlMutation,
+} = urlApi;

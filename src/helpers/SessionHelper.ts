@@ -35,14 +35,6 @@ class SessionHelper {
     }
   }
 
-  setEmail(email: string) {
-    localStorage.setItem("email", email);
-  }
-
-  getEmail() {
-    return localStorage.getItem("email");
-  }
-
   setVerifyEmail(email: string) {
     localStorage.setItem("verifyEmail", email);
   }
@@ -61,14 +53,6 @@ class SessionHelper {
     return localStorage.getItem("otp");
   }
 
-  setAuthId(authId: string) {
-    localStorage.setItem("authId", authId);
-  }
-
-  getAuthId() {
-    return localStorage.getItem("authId");
-  }
-
   logout() {
     localStorage.clear();
     SuccessToast("Logout Successfull");
@@ -79,8 +63,6 @@ class SessionHelper {
 export const {
   setToken,
   getToken,
-  setEmail,
-  getEmail,
   setVerifyEmail,
   getUserInfo,
   getVerifyEmail,
@@ -88,6 +70,4 @@ export const {
   getOtp,
   logout,
   isLoggedIn,
-  setAuthId,
-  getAuthId,
 } = new SessionHelper();
