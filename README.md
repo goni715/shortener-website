@@ -123,15 +123,15 @@ export const DOMAIN_URL=https://shortener-goni.vercel.app
 ## 📦 Installation
 
 ### Prerequisites
-- Node.js 16+ or higher
+- Node.js 24+ or higher
 - npm or yarn package manager
 
 ### Steps
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd shortener-website
+   git clone https://github.com/goni715/shortner-website
+   cd shortner-website
    ```
 
 2. **Install dependencies**
@@ -140,22 +140,14 @@ export const DOMAIN_URL=https://shortener-goni.vercel.app
    # or
    yarn install
    ```
-
-3. **Set up environment variables**
-   ```bash
-   # Create .env.local file
-   cp .env.example .env.local
-   # Update with your API URLs
-   ```
-
-4. **Run development server**
+3. **Run development server**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-5. **Open in browser**
+4. **Open in browser**
    Navigate to `http://localhost:3000`
 
 ## 🏃 Running the Project
