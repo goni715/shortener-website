@@ -237,28 +237,6 @@ The project is deployed on **Vercel**:
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint |
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+**Developed with ❤️ by the Osman Goni**
 
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 🆘 Support
-
-For issues, questions, or suggestions:
-- Open an issue on GitHub
-- Contact the development team
-
-## 👤 Author
-
-**Developed with ❤️ by the Shortener Team**
-
----
-
-**Last Updated:** January 2026
