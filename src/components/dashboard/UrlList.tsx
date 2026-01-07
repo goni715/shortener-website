@@ -1,12 +1,11 @@
-import React, { Suspense, useState } from "react";
+"use client";
+import React, { useState } from "react";
 import TableLoading from "../loader/TableLoading";
 import UrlTable from "./UrlTable";
 import UrlListHeader from "./UrlListHeader";
 import { useGetUrlsQuery } from "@/redux/features/url/urlApi";
 
-
 const UrlList = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const { data, isLoading, isFetching, isError } = useGetUrlsQuery([
@@ -17,7 +16,6 @@ const UrlList = () => {
   const urls = data?.data || [];
   const meta = data?.meta || {};
 
-
   let content: React.ReactNode;
 
   if (isLoading) {
@@ -26,20 +24,18 @@ const UrlList = () => {
 
   if (!isLoading && !isError) {
     content = (
-      <>   
-        <Suspense fallback={<TableLoading/>}>
-          <div className="flex-1 overflow-hidden">
-            <UrlTable
-              urls={urls}
-              meta={meta}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageSize={pageSize}
-              setPageSize={setPageSize}
-              loading={isFetching}
-            />
-          </div>
-        </Suspense>
+      <>
+        <div className="flex-1 overflow-hidden">
+          <UrlTable
+            urls={urls}
+            meta={meta}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            loading={isFetching}
+          />
+        </div>
       </>
     );
   }
@@ -50,11 +46,10 @@ const UrlList = () => {
 
   return (
     <>
-      <UrlListHeader meta={meta} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <UrlListHeader meta={meta} />
       {content}
     </>
-  )
-
+  );
 };
 
 export default UrlList;

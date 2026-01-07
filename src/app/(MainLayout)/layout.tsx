@@ -9,7 +9,7 @@ const layout = ({ children }: TProps) => {
   return (
     <>
       <PrivateRoute>
-        <Navbar/>
+        <Navbar />
         {children}
       </PrivateRoute>
     </>

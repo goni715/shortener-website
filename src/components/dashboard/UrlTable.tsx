@@ -3,7 +3,7 @@ import { Table, ConfigProvider, Pagination } from "antd";
 import type { IMeta } from "../../types/global.type";
 import { IUrl } from "@/types/url.type";
 import getColorClassForDate from "@/utils/getColorClassForDate";
-
+import DeleteUrlModal from "../modal/DeleteUrlModal";
 
 interface TProps {
   urls: IUrl[];
@@ -18,18 +18,17 @@ interface TProps {
 type TDataSource = IUrl & {
   key: number;
   serial: number;
-}
+};
 
-const UrlTable : React.FC<TProps> = ({
+const UrlTable: React.FC<TProps> = ({
   urls,
   meta,
   currentPage,
   setCurrentPage,
   pageSize,
   setPageSize,
-  loading
+  loading,
 }) => {
-
   //handle pagination after deleting last document of last page
   useEffect(() => {
     if (currentPage > meta.totalPages) {
@@ -42,13 +41,12 @@ const UrlTable : React.FC<TProps> = ({
     serial: Number(index + 1) + (meta.page - 1) * pageSize,
     _id: url?._id,
     originalUrl: url?.originalUrl,
-    shortUrl: url?.shortCode,
+    shortUrl: url?.shortUrl,
     shortCode: url?.shortCode,
     visits: url?.visits,
     createdAt: url?.createdAt,
   }));
 
- 
   const columns = [
     {
       title: "S.N.",
@@ -58,15 +56,30 @@ const UrlTable : React.FC<TProps> = ({
     },
     {
       title: "Original Url",
-      dataIndex: "originUrl",
-      key: "email",
+      dataIndex: "originalUrl",
+      key: "originalUrl",
+      width: 200,
+      render: (val: string) => <p className="truncate">{val}</p>,
+    },
+    {
+      title: "Short Url",
+      dataIndex: "shortUrl",
+      key: "shortUrl",
       width: 250,
     },
-     {
-      title: "url Number",
-      dataIndex: "phone",
-      key: "phone",
-      width: 200,
+    {
+      title: "Short Code",
+      dataIndex: "shortCode",
+      key: "shortCode",
+      width: 150,
+      align: "center" as const
+    },
+    {
+      title: "Total Visits",
+      dataIndex: "visits",
+      key: "visits",
+      width: 150,
+      align: "center" as const
     },
     {
       title: "Date",
@@ -74,15 +87,22 @@ const UrlTable : React.FC<TProps> = ({
       key: "createdAt",
       width: 130,
       render: (val: string) => {
-        const { bg, text, border } = getColorClassForDate(val.split('T')[0]);
+        const { bg, text, border } = getColorClassForDate(val.split("T")[0]);
         return (
           <button
             className={`text-sm px-2 py-1 rounded ${bg} ${text} ${border} border cursor-default`}
           >
-            {val.split('T')[0]}
+            {val.split("T")[0]}
           </button>
         );
       },
+    },
+    {
+      title: "Action",
+      dataIndex: "_id",
+      key: "action",
+      width: 100,
+      render: (urlId: string) => <DeleteUrlModal urlId={urlId} />,
     },
   ];
 
@@ -112,13 +132,13 @@ const UrlTable : React.FC<TProps> = ({
           pagination={false}
           rowKey="_id"
           sticky
-          scroll={{ y: "calc(100vh - 324px)" }}
+          scroll={{ x: "max-content" }}
           className="custom-table min-h-[calc(100vh-290px)]"
           loading={loading}
         />
       </div>
-      {meta?.total > 0 && (
-        <div className="p-8 bg-white border-t shadow-md flex justify-center">
+      {meta?.totalPages > 1 && (
+        <div className="p-8 bg-white border-gray-200 border-t shadow-md flex justify-center">
           <Pagination
             onChange={handlePagination}
             current={currentPage}
